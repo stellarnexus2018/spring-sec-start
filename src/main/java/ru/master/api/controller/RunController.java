@@ -21,12 +21,10 @@ public class RunController {
   @GetMapping("/")
   public ResponseEntity<?> home() {
     //Optional<ActUser> byId = myUserRepository.findById(1L);
-    List<ActUser> allData = myUserRepository.findAll();
-
-
-
+    //List<ActUser> allData = myUserRepository.findAll();
     //return ResponseEntity.ok(byId.orElse(new ActUser()));
-    return ResponseEntity.ok(allData);
+    //return ResponseEntity.ok(allData);
+    return ResponseEntity.ok("<h1>Welcome</h1>");
   }
 
   @GetMapping("/user")

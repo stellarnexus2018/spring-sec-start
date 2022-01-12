@@ -1,19 +1,14 @@
 package ru.master.api.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "myusers")
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "my_users")
 @Data
 public class ActUser {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(name = "user_name")
   private String userName;
