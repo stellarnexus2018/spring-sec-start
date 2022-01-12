@@ -3,3 +3,16 @@
 #    user:
 #      name: igor
 #      password: 11111
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://masternode:5432/postgres
+    username: postgres
+    password: Master2021
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+postgresql:
+  schema: start_master

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -14,16 +15,28 @@ import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+  /*@Autowired
+  private DataSource dataSource;*/
+
+  UserDetailsService userDetailsService;
+
   @Autowired
-  DataSource dataSource;
+  public SecurityConfig(UserDetailsService userDetailsService) {
+    this.userDetailsService = userDetailsService;
+  }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+    // JPA
+    auth.userDetailsService(userDetailsService);
+
+
     // кастомизированные запросы на пользователя и роли
-    auth.jdbcAuthentication()
+    /*auth.jdbcAuthentication()
         .dataSource(dataSource)
     .usersByUsernameQuery("select username, password, enabled from my_users where username = ?")
-    .authoritiesByUsernameQuery("select username, authority from my_authorities where username = ?");
+    .authoritiesByUsernameQuery("select username, authority from my_authorities where username = ?");*/
 
     // дефолтным скриптом
     /*auth.jdbcAuthentication()
